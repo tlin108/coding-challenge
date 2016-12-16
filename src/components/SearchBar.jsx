@@ -8,6 +8,11 @@ export default class SearchBar extends Component {
     this.state = { term: ''};
   }
 
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onFilterTermChange(term);
+  }
+
   render() {
     return (
       <Col xs={8} xsOffset={2} >
@@ -23,10 +28,5 @@ export default class SearchBar extends Component {
         </form>
       </Col>
     )
-  }
-
-  onInputChange(term) {
-    this.setState({term});
-    this.props.onFilterTermChange(term);
   }
 }

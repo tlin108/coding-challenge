@@ -16,6 +16,18 @@ class App extends Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
+  componentDidMount() {
+    fetch('https://api.eventable.com/v1/events/', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token 7761e7e3b25a1d6d315901fcd7180d971f77ea2e'
+      }
+    })
+    .then(res => res.json())
+    .then(data => this.setState({events: data.results}))
+    .catch(err => console.log(err))
+  }
+
   handleFilterChange(filterTerm){
     this.setState({filterTerm});
   }
