@@ -3,7 +3,7 @@ import { Panel, Row } from 'react-bootstrap';
 import moment from 'moment';
 
 function EventItem({event}) {
-  const eventDescription = event.description ? event.description: 'No Description';
+  const eventDescription = event.description || 'No Description';
   const eventLocation = event.locations.length > 0 ? event.locations[0].name:'No Location';
   const eventStartTime = moment(event.start_time).format('MMM Do YYYY, h:mm:ss a');
   const eventEndTime = moment(event.end_time).format('MMM Do YYYY, h:mm:ss a');

@@ -39,7 +39,7 @@ class App extends Component {
   filterEvents() {
     const { events, filterTerm } = this.state;
     return filterTerm ? 
-      events.filter((event) => event.title.toLowerCase().indexOf(filterTerm) !== -1) 
+      events.filter((event) => event.title.toLowerCase().includes(filterTerm)) 
       :
       events;
   }
