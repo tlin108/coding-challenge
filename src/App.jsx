@@ -1,8 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import './App.css';
+import { Col, Row } from 'react-bootstrap';
 
+import Header from './components/Header';
 import SearchBar from './components/SearchBar';
+import EventList from './components/EventList';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +38,17 @@ class App extends Component {
   render() {
     return (
       <div className="App container-fluid">
-        <SearchBar onFilterTermChange={this.handleFilterChange}/>
+        <Header />
+        <Row>
+          <Col xs={6} xsOffset={1} >
+            <SearchBar onFilterTermChange={this.handleFilterChange} />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={10} xsOffset={1}>
+            <EventList /> 
+          </Col>
+        </Row>
       </div>
     );
   }
