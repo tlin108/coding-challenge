@@ -3,15 +3,16 @@ import { PanelGroup } from 'react-bootstrap';
 
 import EventItem from './EventItem';
 
-function EventList(props) {
-  if (props.events.length === 0){
+function EventList({events}) {
+  if (events.length === 0){
     return(
       <div>
-        Loading...
+        No result, please try again with a different search term
       </div>
     )
   }
-  const EventItems = props.events.map(event => {
+
+  const EventItems = events.map(event => {
     return(
       <EventItem
         key={event.id}
@@ -19,6 +20,7 @@ function EventList(props) {
       />
     )
   })
+  
   return (
     <PanelGroup>
       {EventItems}

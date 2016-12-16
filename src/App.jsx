@@ -31,11 +31,22 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
-  handleFilterChange(filterTerm){
+  handleFilterChange(newFilterTerm) {
+    const filterTerm = newFilterTerm.toLowerCase();
     this.setState({filterTerm});
   }
 
+  filterEvents() {
+    const { events, filterTerm } = this.state;
+    return filterTerm ? 
+      events.filter((event) => event.title.toLowerCase().indexOf(filterTerm) !== -1) 
+      :
+      events;
+  }
+
   render() {
+    const filteredEvents = this.filterEvents();
+
     return (
       <div className="App container-fluid">
         <Header />
@@ -46,7 +57,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col xs={10} xsOffset={1}>
-            <EventList events={this.state.events} /> 
+            <EventList events={filteredEvents} /> 
           </Col>
         </Row>
       </div>
