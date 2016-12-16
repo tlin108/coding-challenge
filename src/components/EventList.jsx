@@ -1,11 +1,27 @@
 import React from 'react';
-import { Panel, PanelGroup } from 'react-bootstrap';
+import { PanelGroup } from 'react-bootstrap';
+
+import EventItem from './EventItem';
 
 function EventList(props) {
+  if (props.events.length === 0){
+    return(
+      <div>
+        Loading...
+      </div>
+    )
+  }
+  const EventItems = props.events.map(event => {
+    return(
+      <EventItem
+        key={event.id}
+        event={event}
+      />
+    )
+  })
   return (
-    <PanelGroup defaultActiveKey="1" accordion>
-      <Panel header="Panel 1" eventKey="1">Panel 1 content</Panel>
-      <Panel header="Panel 2" eventKey="2">Panel 2 content</Panel>
+    <PanelGroup>
+      {EventItems}
     </PanelGroup>
   )
 };

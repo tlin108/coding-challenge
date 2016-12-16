@@ -46,7 +46,7 @@ class App extends Component {
         </Row>
         <Row>
           <Col xs={10} xsOffset={1}>
-            <EventList /> 
+            <EventList events={this.state.events} /> 
           </Col>
         </Row>
       </div>
