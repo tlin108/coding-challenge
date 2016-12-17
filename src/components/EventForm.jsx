@@ -6,8 +6,60 @@ export default class EventForm extends Component {
     super(props);
 
     this.state = {
-      formShow: false
+      formShow: false,
+      title: '',
+      startDate: '',
+      startTime: '',
+      endDate: '',
+      endTime: '',
+      description: '',
+      locations: []
     };
+
+  }
+
+  onTitleChange(title) {
+    this.setState({title});
+  }
+
+  onStartDateChange(startDate) {
+    this.setState({startDate});
+  }
+
+  onStartTimeChange(startTime) {
+    this.setState({startTime});
+  }
+
+  onEndDateChange(endDate) {
+    this.setState({endDate});
+  }
+
+  onEndTimeChange(endTime) {
+    this.setState({endTime});
+  }
+
+  onDescriptionChange(description) {
+    this.setState({description});
+  }
+
+  onlocationsChange(locations) {
+    this.setState({locations});
+  }
+
+  onFormSubmit(e) {
+    e.preventDefault();
+    const { title, startDate, startTime, endDate, endTime, description, locations } = this.state;
+    this.props.addEvent({ title, startDate, startTime, endDate, endTime, description, locations })
+    this.setState({
+      formShow: false,
+      title: '',
+      startDate: '',
+      startTime: '',
+      endDate: '',
+      endTime: '',
+      description: '',
+      locations: []
+    });
   }
 
   render() {
@@ -30,7 +82,7 @@ export default class EventForm extends Component {
                     Event Title: 
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="text" placeholder="Enter Title Here" />
+                    <FormControl type="text" placeholder="Enter Title Here" onChange={e => this.onTitleChange(e.target.value)} />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontalStartDateTime">
@@ -38,13 +90,13 @@ export default class EventForm extends Component {
                     Event Start Date: 
                   </Col>
                   <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (YYYY/MM/DD)" />
+                    <FormControl type="text" placeholder="Format (YYYY/MM/DD)" onChange={e => this.onStartDateChange(e.target.value)} />
                   </Col>
                   <Col componentClass={ControlLabel} sm={2}>
                     Event Start Time: 
                   </Col>
                   <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (HH:MM) e.g. 20:30" />
+                    <FormControl type="text" placeholder="Format (HH:MM) e.g. 20:30" onChange={e => this.onStartTimeChange(e.target.value)} />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontalEndDateTime">
@@ -52,13 +104,13 @@ export default class EventForm extends Component {
                     Event End Date: 
                   </Col>
                   <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (YYYY/MM/DD)" />
+                    <FormControl type="text" placeholder="Format (YYYY/MM/DD)" onChange={e => this.onEndDateChange(e.target.value)} />
                   </Col>
                   <Col componentClass={ControlLabel} sm={2}>
                     Event End Time: 
                   </Col>
                   <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (HH:MM) e.g. 22:30" />
+                    <FormControl type="text" placeholder="Format (HH:MM) e.g. 22:30" onChange={e => this.onEndTimeChange(e.target.value)} />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formControlsTextarea">
@@ -69,12 +121,12 @@ export default class EventForm extends Component {
                     <FormControl componentClass="textarea" placeholder="Enter Description Here" />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="formHorizontalLocation">
+                <FormGroup controlId="formHorizontallocations">
                   <Col componentClass={ControlLabel} sm={2}>
-                    Event Location: (Optional)
+                    Event locations: (Optional)
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="text" placeholder="Enter Location Here" />
+                    <FormControl type="text" placeholder="Enter locations Here" />
                   </Col>
                 </FormGroup>
               </Form>
@@ -83,7 +135,7 @@ export default class EventForm extends Component {
               <Col sm={1}>
                 <Button onClick={formClose}>Close</Button>
               </Col>
-              <Button type="submit">
+              <Button type="submit" onClick={e => this.onFormSubmit(e)} >
                 Submit
               </Button>
             </Modal.Footer>

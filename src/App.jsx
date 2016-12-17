@@ -18,6 +18,7 @@ class App extends Component {
     };
 
     this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.addEvent = this.addEvent.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,13 @@ class App extends Component {
     .then(res => res.json())
     .then(data => this.setState({events: data.results}))
     .catch(err => console.log(err))
+  }
+
+  addEvent(newEvent) {
+    newEvent.id = this.state.events.length;
+    this.setState({
+      events: [...this.state.events, newEvent]
+    })
   }
 
   handleFilterChange(newFilterTerm) {
@@ -56,7 +64,7 @@ class App extends Component {
             <SearchBar onFilterTermChange={this.handleFilterChange} />
           </Col>
           <Col xs={3} xsOffset={1}>
-            <EventForm />
+            <EventForm addEvent={this.addEvent} />
           </Col>
         </Row>
         <Row>
