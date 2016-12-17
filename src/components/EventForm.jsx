@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Col, ControlLabel, Form, FormGroup, FormControl, Modal } from 'react-bootstrap';
+import moment from 'moment';
 
 export default class EventForm extends Component {
   constructor(props) {
@@ -8,10 +9,8 @@ export default class EventForm extends Component {
     this.state = {
       formShow: false,
       title: '',
-      startDate: '',
-      startTime: '',
-      endDate: '',
-      endTime: '',
+      start_time: '',
+      end_time: '',
       description: '',
       locations: []
     };
@@ -22,20 +21,12 @@ export default class EventForm extends Component {
     this.setState({title});
   }
 
-  onStartDateChange(startDate) {
-    this.setState({startDate});
+  onStartDateTimeChange(start_time) {
+    this.setState({start_time});
   }
 
-  onStartTimeChange(startTime) {
-    this.setState({startTime});
-  }
-
-  onEndDateChange(endDate) {
-    this.setState({endDate});
-  }
-
-  onEndTimeChange(endTime) {
-    this.setState({endTime});
+  onEndDateTimeChange(end_time) {
+    this.setState({end_time});
   }
 
   onDescriptionChange(description) {
@@ -46,10 +37,32 @@ export default class EventForm extends Component {
     this.setState({locations});
   }
 
+  validateStartDate() {
+    const { start_time } = this.state;
+    if(start_time) {
+      if(moment(start_time).isValid()) {
+        return 'success';
+      } else
+        return 'error';
+    }
+    return;
+  }
+
+  validateEndDate() {
+    const { end_time } = this.state;
+    if(end_time) {
+      if(moment(end_time).isValid()) {
+        return 'success';
+      } else
+        return 'error';
+    }
+    return;
+  }
+
   onFormSubmit(e) {
     e.preventDefault();
-    const { title, startDate, startTime, endDate, endTime, description, locations } = this.state;
-    this.props.addEvent({ title, startDate, startTime, endDate, endTime, description, locations })
+    const { title, start_time, end_time, description, locations } = this.state;
+    this.props.addEvent({ title, start_time, end_time, description, locations })
     this.setState({
       formShow: false,
       title: '',
@@ -78,54 +91,42 @@ export default class EventForm extends Component {
             <Modal.Body>
               <Form horizontal>
                 <FormGroup controlId="formHorizontalTitle">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={3}>
                     Event Title: 
                   </Col>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <FormControl type="text" placeholder="Enter Title Here" onChange={e => this.onTitleChange(e.target.value)} />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="formHorizontalStartDateTime">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Event Start Date: 
+                <FormGroup controlId="formHorizontalStartDateTime" validationState={this.validateStartDate()} >
+                  <Col componentClass={ControlLabel} sm={3}>
+                    Event Start Date and Time: 
                   </Col>
-                  <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (YYYY/MM/DD)" onChange={e => this.onStartDateChange(e.target.value)} />
-                  </Col>
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Event Start Time: 
-                  </Col>
-                  <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (HH:MM) e.g. 20:30" onChange={e => this.onStartTimeChange(e.target.value)} />
+                  <Col sm={9}>
+                    <FormControl type="text" placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-17 20:30" onChange={e => this.onStartDateTimeChange(e.target.value)} />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="formHorizontalEndDateTime">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Event End Date: 
+                <FormGroup controlId="formHorizontalEndDateTime" validationState={this.validateEndDate()} >
+                  <Col componentClass={ControlLabel} sm={3}>
+                    Event End Date and Time: 
                   </Col>
-                  <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (YYYY/MM/DD)" onChange={e => this.onEndDateChange(e.target.value)} />
-                  </Col>
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Event End Time: 
-                  </Col>
-                  <Col sm={4}>
-                    <FormControl type="text" placeholder="Format (HH:MM) e.g. 22:30" onChange={e => this.onEndTimeChange(e.target.value)} />
+                  <Col sm={9}>
+                    <FormControl type="text" placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-18 22:00" onChange={e => this.onEndDateTimeChange(e.target.value)} />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formControlsTextarea">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={3}>
                     Event Description: (Optional)
                   </Col>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <FormControl componentClass="textarea" placeholder="Enter Description Here" />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontallocations">
-                  <Col componentClass={ControlLabel} sm={2}>
+                  <Col componentClass={ControlLabel} sm={3}>
                     Event locations: (Optional)
                   </Col>
-                  <Col sm={10}>
+                  <Col sm={9}>
                     <FormControl type="text" placeholder="Enter locations Here" />
                   </Col>
                 </FormGroup>
