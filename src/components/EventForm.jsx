@@ -84,7 +84,12 @@ export default class EventForm extends Component {
           Add Event
         </Button>
 
-        <Modal show={this.state.formShow} onHide={formClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
+        <Modal 
+          show={this.state.formShow} 
+          onHide={formClose} 
+          bsSize="large" 
+          aria-labelledby="contained-modal-title-lg"
+        >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-lg">Add Event</Modal.Title>
             </Modal.Header>
@@ -95,23 +100,41 @@ export default class EventForm extends Component {
                     Event Title: 
                   </Col>
                   <Col sm={9}>
-                    <FormControl type="text" placeholder="Enter Title Here" onChange={e => this.onTitleChange(e.target.value)} />
+                    <FormControl 
+                      type="text" 
+                      placeholder="Enter Title Here" 
+                      onChange={e => this.onTitleChange(e.target.value)}
+                    />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="formHorizontalStartDateTime" validationState={this.validateStartDate()} >
+                <FormGroup 
+                  controlId="formHorizontalStartDateTime" 
+                  validationState={this.validateStartDate()} 
+                >
                   <Col componentClass={ControlLabel} sm={3}>
                     Event Start Date and Time: 
                   </Col>
                   <Col sm={9}>
-                    <FormControl type="text" placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-17 20:30" onChange={e => this.onStartDateTimeChange(e.target.value)} />
+                    <FormControl 
+                      type="text" 
+                      placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-17 20:30" 
+                      onChange={e => this.onStartDateTimeChange(e.target.value)} 
+                    />
                   </Col>
                 </FormGroup>
-                <FormGroup controlId="formHorizontalEndDateTime" validationState={this.validateEndDate()} >
+                <FormGroup 
+                  controlId="formHorizontalEndDateTime" 
+                  validationState={this.validateEndDate()} 
+                >
                   <Col componentClass={ControlLabel} sm={3}>
                     Event End Date and Time: 
                   </Col>
                   <Col sm={9}>
-                    <FormControl type="text" placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-18 22:00" onChange={e => this.onEndDateTimeChange(e.target.value)} />
+                    <FormControl 
+                      type="text" 
+                      placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-18 22:00" 
+                      onChange={e => this.onEndDateTimeChange(e.target.value)} 
+                    />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formControlsTextarea">
@@ -119,7 +142,11 @@ export default class EventForm extends Component {
                     Event Description: (Optional)
                   </Col>
                   <Col sm={9}>
-                    <FormControl componentClass="textarea" placeholder="Enter Description Here" onChange={e => this.onDescriptionChange(e.target.value)} />
+                    <FormControl 
+                      componentClass="textarea" 
+                      placeholder="Enter Description Here" 
+                      onChange={e => this.onDescriptionChange(e.target.value)} 
+                    />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontallocations">
@@ -127,7 +154,9 @@ export default class EventForm extends Component {
                     Event locations: (Optional)
                   </Col>
                   <Col sm={9}>
-                    <FormControl type="text" placeholder="Enter locations Here" />
+                    <FormControl 
+                      type="text" 
+                      placeholder="Enter locations Here" />
                   </Col>
                 </FormGroup>
               </Form>
