@@ -33,8 +33,13 @@ export default class EventForm extends Component {
     this.setState({description});
   }
 
-  onlocationsChange(locations) {
-    this.setState({locations});
+  onlocationsChange(newLocation) {
+    const location = {
+      name: newLocation
+    };
+    this.setState({
+      locations: [location]
+    });
   }
 
   validateStartDate() {
@@ -162,7 +167,9 @@ export default class EventForm extends Component {
                   <Col sm={9}>
                     <FormControl 
                       type="text" 
-                      placeholder="Enter locations Here" />
+                      placeholder="Enter locations Here"
+                      onChange={e => this.onlocationsChange(e.target.value)}
+                    />
                   </Col>
                 </FormGroup>
               </Form>
