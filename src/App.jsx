@@ -6,6 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import EventList from './components/EventList';
+import EventForm from './components/EventForm';
 
 class App extends Component {
   constructor(props) {
@@ -51,8 +52,11 @@ class App extends Component {
       <div className="App container-fluid">
         <Header />
         <Row>
-          <Col xs={6} xsOffset={1} >
+          <Col xs={6} xsOffset={1}>
             <SearchBar onFilterTermChange={this.handleFilterChange} />
+          </Col>
+          <Col xs={3} xsOffset={1}>
+            <EventForm />
           </Col>
         </Row>
         <Row>
