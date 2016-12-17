@@ -71,6 +71,19 @@ export default class EventForm extends Component {
   onFormSubmit(e) {
     e.preventDefault();
     const { title, start_time, end_time, description, locations } = this.state;
+
+    // handling empty/invalid input
+    if(!title) {
+      alert('Title is empty!');
+      return;
+    } else if (this.validateStartDate() !== 'success'){
+      alert("Event start date and time is invalid! Please follow the format and make sure it's a futuristic event");
+      return;
+    } else if (this.validateEndDate() !== 'success'){
+      alert('Event end date and time is invalid! Please check the formate and make sure it happens after start date and time');
+      return;
+    }
+
     this.props.addEvent({ title, start_time, end_time, description, locations })
     this.setState({
       formShow: false,
@@ -127,7 +140,7 @@ export default class EventForm extends Component {
                   <Col sm={9}>
                     <FormControl 
                       type="text" 
-                      placeholder="e.g. 2016-12-17 20:30 & Must be a future event that's going to happen!" 
+                      placeholder="e.g. 2016-12-17 20:30 & Must be a future event!" 
                       onChange={e => this.onStartDateTimeChange(e.target.value)} 
                     />
                   </Col>
