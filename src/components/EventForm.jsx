@@ -39,8 +39,10 @@ export default class EventForm extends Component {
 
   validateStartDate() {
     const { start_time } = this.state;
+    const timeNow = moment().format('YYYY-MM-DD HH:mm');
     if(start_time) {
-      if(moment(start_time).isValid()) {
+      // return success only if start_time is valid input and after time now (futuristic)
+      if(moment(start_time, "YYYY-MM-DD HH:mm", true).isValid() && moment(start_time).isAfter(timeNow)) {
         return 'success';
       } else
         return 'error';
@@ -50,8 +52,10 @@ export default class EventForm extends Component {
 
   validateEndDate() {
     const { end_time } = this.state;
+    const start_time = moment(this.state.start_time).format('YYYY-MM-DD HH:mm');
     if(end_time) {
-      if(moment(end_time).isValid()) {
+      // return success only if end_time is valid input and happens after start_time
+      if(moment(end_time, "YYYY-MM-DD HH:mm", true).isValid() && moment(end_time).isAfter(start_time)) {
         return 'success';
       } else
         return 'error';
@@ -112,12 +116,13 @@ export default class EventForm extends Component {
                   validationState={this.validateStartDate()} 
                 >
                   <Col componentClass={ControlLabel} sm={3}>
-                    Event Start Date and Time: 
+                    Event Start Date and Time:
+                    Format YYYY-MM-DD HH:MM 
                   </Col>
                   <Col sm={9}>
                     <FormControl 
                       type="text" 
-                      placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-17 20:30" 
+                      placeholder="e.g. 2016-12-17 20:30 & Must be a future event that's going to happen!" 
                       onChange={e => this.onStartDateTimeChange(e.target.value)} 
                     />
                   </Col>
@@ -127,12 +132,13 @@ export default class EventForm extends Component {
                   validationState={this.validateEndDate()} 
                 >
                   <Col componentClass={ControlLabel} sm={3}>
-                    Event End Date and Time: 
+                    Event End Date and Time:
+                    Format YYYY-MM-DD HH:MM 
                   </Col>
                   <Col sm={9}>
                     <FormControl 
                       type="text" 
-                      placeholder="Format YYYY-MM-DD HH:MM e.g. 2016-12-18 22:00" 
+                      placeholder="e.g. 2016-12-18 22:00 & Must be after Event Start Date and Time" 
                       onChange={e => this.onEndDateTimeChange(e.target.value)} 
                     />
                   </Col>
