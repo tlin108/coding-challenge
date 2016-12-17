@@ -13,10 +13,13 @@ export default class EventForm extends Component {
   render() {
     let formClose = () => this.setState({ formShow: false });
 
-    const FormModal = React.createClass({
-      render() {
-        return (
-          <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
+    return (
+      <div>
+        <Button bsStyle="primary" block onClick={() => this.setState({ formShow: true })}>
+          Add Event
+        </Button>
+
+        <Modal show={this.state.formShow} onHide={formClose} bsSize="large" aria-labelledby="contained-modal-title-lg">
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-lg">Add Event</Modal.Title>
             </Modal.Header>
@@ -78,24 +81,13 @@ export default class EventForm extends Component {
             </Modal.Body>
             <Modal.Footer>
               <Col sm={1}>
-                <Button onClick={this.props.onHide}>Close</Button>
+                <Button onClick={formClose}>Close</Button>
               </Col>
               <Button type="submit">
                 Submit
               </Button>
             </Modal.Footer>
           </Modal>
-        );
-      }
-    });
-
-    return (
-      <div>
-      <Button bsStyle="primary" block onClick={() => this.setState({ formShow: true })}>
-        Add Event
-      </Button>
-
-      <FormModal show={this.state.formShow} onHide={formClose} />
       </div>
     )
   }
