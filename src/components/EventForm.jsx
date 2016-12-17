@@ -60,10 +60,18 @@ export default class EventForm extends Component {
                 </FormGroup>
                 <FormGroup controlId="formControlsTextarea">
                   <Col componentClass={ControlLabel} sm={2}>
-                    Event Description (Optional):
+                    Event Description: (Optional)
                   </Col>
                   <Col sm={10}>
                     <FormControl componentClass="textarea" placeholder="Enter Description Here" />
+                  </Col>
+                </FormGroup>
+                <FormGroup controlId="formHorizontalLocation">
+                  <Col componentClass={ControlLabel} sm={2}>
+                    Event Location: (Optional)
+                  </Col>
+                  <Col sm={10}>
+                    <FormControl type="text" placeholder="Enter Location Here" />
                   </Col>
                 </FormGroup>
               </Form>
