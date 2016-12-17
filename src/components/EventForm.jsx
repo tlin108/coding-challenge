@@ -69,7 +69,6 @@ export default class EventForm extends Component {
   }
 
   onFormSubmit(e) {
-    e.preventDefault();
     const { title, start_time, end_time, description, locations } = this.state;
 
     // handling empty/invalid input

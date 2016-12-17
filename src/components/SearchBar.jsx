@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { Col, ControlLabel, Form, FormGroup, FormControl } from 'react-bootstrap';
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -15,16 +15,21 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <form className="search-bar">
-        <FormGroup>
-          <FormControl
-            type="text"
-            value={this.state.term}
-            placeholder="Filter by ..."
-            onChange={e => this.onInputChange(e.target.value)}
-          />
+      <Form horizontal>
+        <FormGroup controlId="formControlsSelect">
+          <Col componentClass={ControlLabel} sm={3}>
+            Filter By: 
+          </Col>
+          <Col sm={9}>
+            <FormControl
+              type="text"
+              value={this.state.term}
+              placeholder="Filter by ..."
+              onChange={e => this.onInputChange(e.target.value)}
+            />
+          </Col>
         </FormGroup>
-      </form>
+      </Form>
     )
   }
 }
