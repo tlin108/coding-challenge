@@ -119,7 +119,7 @@ export default class EventForm extends Component {
                     Event Description: (Optional)
                   </Col>
                   <Col sm={9}>
-                    <FormControl componentClass="textarea" placeholder="Enter Description Here" />
+                    <FormControl componentClass="textarea" placeholder="Enter Description Here" onChange={e => this.onDescriptionChange(e.target.value)} />
                   </Col>
                 </FormGroup>
                 <FormGroup controlId="formHorizontallocations">
