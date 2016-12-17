@@ -16,11 +16,12 @@ class App extends Component {
     this.state = {
       events: [],
       filterTerm: '',
-      sortTerm: 'title'
+      sortTerm: 'start_time'
     };
 
-    this.handleFilterChange = this.handleFilterChange.bind(this);
     this.addEvent = this.addEvent.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,10 @@ class App extends Component {
   handleFilterChange(newFilterTerm) {
     const filterTerm = newFilterTerm.toLowerCase();
     this.setState({filterTerm});
+  }
+
+  handleSortChange(sortTerm) {
+    this.setState({sortTerm});
   }
 
   filterEvents() {
@@ -73,7 +78,7 @@ class App extends Component {
             <SearchBar onFilterTermChange={this.handleFilterChange} />
           </Col>
           <Col xs={3}>
-            <SortBar/>
+            <SortBar sortTerm={this.state.sortTerm} onSortTermChange={this.handleSortChange} />
           </Col>
           <Col xs={2}>
             <EventForm addEvent={this.addEvent} />
