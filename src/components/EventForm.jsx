@@ -45,7 +45,7 @@ export default class EventForm extends Component {
   validateStartDate() {
     const { start_time } = this.state;
     if(start_time) {
-      // return success only if start_time is valid input and after time now (futuristic)
+      // return success only if start_time is valid input
       if(moment(start_time, "YYYY-MM-DD HH:mm", true).isValid()) {
         return 'success';
       } else
@@ -138,7 +138,7 @@ export default class EventForm extends Component {
                   <Col sm={9}>
                     <FormControl 
                       type="text" 
-                      placeholder="e.g. 2016-12-17 20:30 & Must be a future event!" 
+                      placeholder="e.g. 2016-12-17 20:30" 
                       onChange={e => this.onStartDateTimeChange(e.target.value)} 
                     />
                   </Col>
