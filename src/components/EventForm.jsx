@@ -191,7 +191,10 @@ export default class EventForm extends Component {
                   Close
                 </Button>
               </Col>
-                <Button type="submit" onClick={e => this.onFormSubmit(e)} >
+                <Button 
+                  type="submit"
+                  bsStyle="success" 
+                  onClick={e => this.onFormSubmit(e)} >
                   Submit
                 </Button>
             </Modal.Footer>
