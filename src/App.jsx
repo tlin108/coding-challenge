@@ -9,6 +9,8 @@ import SortBar from './components/SortBar';
 import EventList from './components/EventList';
 import EventForm from './components/EventForm';
 
+import API_TOKEN from '../config/config.js';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,7 @@ export default class App extends Component {
     fetch('https://api.eventable.com/v1/events/', {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Token 7761e7e3b25a1d6d315901fcd7180d971f77ea2e'
+        'Authorization': API_TOKEN
       }
     })
     .then(res => res.json())
