@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
 import './App.css';
+import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 import Header from './components/Header';
@@ -9,7 +9,7 @@ import SortBar from './components/SortBar';
 import EventList from './components/EventList';
 import EventForm from './components/EventForm';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     
@@ -78,7 +78,10 @@ class App extends Component {
             <SearchBar onFilterTermChange={this.handleFilterChange} />
           </Col>
           <Col xs={3}>
-            <SortBar sortTerm={this.state.sortTerm} onSortTermChange={this.handleSortChange} />
+            <SortBar 
+              sortTerm={this.state.sortTerm} 
+              onSortTermChange={this.handleSortChange}
+            />
           </Col>
           <Col xs={2}>
             <EventForm addEvent={this.addEvent} />
@@ -93,5 +96,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

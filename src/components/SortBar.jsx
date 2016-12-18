@@ -7,7 +7,7 @@ export default class SortBar extends Component {
 
     this.state = {
       option: this.props.sortTerm
-    }
+    };
   }
 
   onSelectChange(option) {
@@ -31,7 +31,8 @@ export default class SortBar extends Component {
             >
               <option value="title">Title</option>
               <option value="start_time">Start Time</option>
-          </FormControl>
+              <option value="end_time">End Time</option>
+            </FormControl>
           </Col>
         </FormGroup>
       </Form>

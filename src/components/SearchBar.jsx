@@ -17,10 +17,10 @@ export default class SearchBar extends Component {
     return (
       <Form horizontal>
         <FormGroup controlId="formControlsSelect">
-          <Col componentClass={ControlLabel} sm={3}>
-            Filter By: 
+          <Col componentClass={ControlLabel} sm={5}>
+            Filter Event Title By: 
           </Col>
-          <Col sm={9}>
+          <Col sm={7}>
             <FormControl
               type="text"
               value={this.state.term}

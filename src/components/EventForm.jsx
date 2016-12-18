@@ -97,7 +97,7 @@ export default class EventForm extends Component {
   }
 
   render() {
-    let formClose = () => this.setState({ formShow: false });
+    const formClose = () => this.setState({ formShow: false });
 
     return (
       <div>
@@ -188,11 +188,13 @@ export default class EventForm extends Component {
             </Modal.Body>
             <Modal.Footer>
               <Col sm={1}>
-                <Button onClick={formClose}>Close</Button>
+                <Button onClick={formClose}>
+                  Close
+                </Button>
               </Col>
-              <Button type="submit" onClick={e => this.onFormSubmit(e)} >
-                Submit
-              </Button>
+                <Button type="submit" onClick={e => this.onFormSubmit(e)} >
+                  Submit
+                </Button>
             </Modal.Footer>
           </Modal>
       </div>
