@@ -44,10 +44,9 @@ export default class EventForm extends Component {
 
   validateStartDate() {
     const { start_time } = this.state;
-    const timeNow = moment().format('YYYY-MM-DD HH:mm');
     if(start_time) {
       // return success only if start_time is valid input and after time now (futuristic)
-      if(moment(start_time, "YYYY-MM-DD HH:mm", true).isValid() && moment(start_time).isAfter(timeNow)) {
+      if(moment(start_time, "YYYY-MM-DD HH:mm", true).isValid()) {
         return 'success';
       } else
         return 'error';
